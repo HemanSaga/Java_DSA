@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class recursion1 {
+    static int print(int i,int sum){
+        if(i < 0){
+            return (sum);
+        }
+        return(print(i-1,sum+i));
+
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of time to print");
+        int num = sc.nextInt();
+        int sum = recursion1.print(num,0);
+        System.out.println("The sum is "+sum);
+    }
+}
