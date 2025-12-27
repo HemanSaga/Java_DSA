@@ -1,0 +1,59 @@
+import java.util.*;
+public class sec_small_large {
+    static int sec_small(ArrayList<Integer> arr) {
+
+        if (arr.size() < 2)
+            return -1;
+
+        int small = Integer.MAX_VALUE;
+        int second_small = Integer.MAX_VALUE;
+
+        for (int i = 0; i < arr.size(); i++) {
+            int val = arr.get(i);
+
+            if (val < small) {
+                second_small = small;
+                small = val;
+            }
+            else if (val < second_small && val != small) {
+                second_small = val;
+            }
+        }
+        return second_small;
+    }
+    static int sec_large(ArrayList<Integer> arr) {
+
+        if (arr.size() < 2)
+            return -1;
+
+        int large = Integer.MIN_VALUE;
+        int second_large = Integer.MIN_VALUE;
+
+        for (int i = 0; i < arr.size(); i++) {
+            int val = arr.get(i);
+
+            if (val > large) {
+                second_large = large;
+                large = val;
+            }
+            else if (val > second_large && val != large) {
+                second_large = val;
+            }
+        }
+        return second_large;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> arr = new ArrayList<>();
+
+        System.out.println("Enter 6 array elements:");
+        for (int i = 0; i < 3; i++) {
+            arr.add(sc.nextInt());
+        }
+
+        System.out.println("Second smallest number is : " + sec_small(arr));
+        System.out.println("Second largest number is : " + sec_large(arr));
+    }
+}
