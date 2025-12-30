@@ -1,0 +1,28 @@
+import java.util.HashMap;
+
+public class subarray_k {
+    public static void main(String[] args){
+        int[] arr = {1,3,5,-7,6,-1,2,-2};
+        int k=4;
+        int sum = 0 ;
+        int ans = 0;
+        HashMap<Integer, Integer> sub = new HashMap<>();
+
+        sub.put(0,1);//the empty set ;
+
+        for(int j=0;j<arr.length;j++){
+            sum+=arr[j];
+
+            if(sub.containsKey(sum-k)){
+                ans+=sub.get(sum-k);
+            }
+            if(sub.containsKey(sum)){
+                sub.put(sum,sub.get(sum)+1);
+            }
+            else{
+                sub.put(sum,1);
+            }
+        }
+        System.out.println("The total number of subarrays are :"+ans);
+    }
+}
