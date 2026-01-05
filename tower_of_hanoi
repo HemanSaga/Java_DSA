@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class tower_or_hanoi {
+    public static void toh(int n , String source, String temp , String dest){
+        if(n==1){
+            System.out.println("Move the desk "+n+" from "+source+" to "+dest);
+            return;
+        }
+        toh(n-1,source,dest,temp);
+        System.out.println("Move the desk "+n+" from "+source+" to "+dest);
+        toh(n-1,temp,source,dest);
+    }
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Enter the number of desk ");
+        int n = sc.nextInt();
+        System.out.println("The tower of hanoi problem solution ");
+        toh(n,"source","temp","dest");
+    }
+}
