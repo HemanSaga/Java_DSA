@@ -1,0 +1,29 @@
+import java.util.HashMap;
+class Solution2 {
+    public int mostFrequentElement(int[] nums) {
+        int max=0;
+        int element=-1;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int a : nums){
+            map.put(a, map.getOrDefault(a, 0) + 1);
+        }
+        for(int a : map.keySet()) {
+            System.out.print(a + " ");
+            System.out.println(map.get(a));
+        }
+        for(Integer freq : map.keySet()){
+            if(map.get(freq) > max) {
+                max = map.get(freq);
+                element = freq;
+            }
+        }
+        return element;
+    }
+}
+public class Most_Frequent {
+    public static void main(String[] args){
+        Solution2 s= new Solution2();
+        int[] arr = {1,2,3,2,2,2,2,2,2,4,3,3,3,3};
+        System.out.println("the Max Frequency : "+s.mostFrequentElement(arr));
+    }
+}
