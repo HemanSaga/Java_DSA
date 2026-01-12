@@ -1,0 +1,75 @@
+import java.util.*;
+
+public class merge_sort {
+
+    // Populate array with random numbers
+    public static int[] populate(int n) {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = (int) (Math.random() * 100);
+        }
+        return arr;
+    }
+
+    // Merge two sorted halves
+    public static void merge(int[] arr, int low, int mid, int high) {
+        List<Integer> temp = new ArrayList<>();
+
+        int left = low;
+        int right = mid + 1;
+
+        while (left <= mid && right <= high) {
+            if (arr[left] <= arr[right]) {
+                temp.add(arr[left++]);
+            } else {
+                temp.add(arr[right++]);
+            }
+        }
+
+        while (left <= mid) {
+            temp.add(arr[left++]);
+        }
+
+        while (right <= high) {
+            temp.add(arr[right++]);
+        }
+
+        int index = low;
+        for (int val : temp) {
+            arr[index++] = val;
+        }
+    }
+
+    // Merge sort recursion
+    public static void mergeSort(int[] arr, int low, int high) {
+        if (low >= high) return;
+
+        int mid = (low + high) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int n = sc.nextInt();
+
+        int[] arr = populate(n);
+
+        System.out.println("Original array:");
+        for (int a : arr) {
+            System.out.print(a + " ");
+        }
+
+        mergeSort(arr, 0, arr.length - 1);
+
+        System.out.println("\nSorted array:");
+        for (int a : arr) {
+            System.out.print(a + " ");
+        }
+
+        sc.close();
+    }
+}
