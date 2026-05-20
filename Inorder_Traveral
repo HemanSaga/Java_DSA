@@ -1,0 +1,65 @@
+import java.util.*;
+
+public class Main {
+
+    // Tree node
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
+    static class Solution {
+
+        List<Integer> result = new ArrayList<>();
+
+        public List<Integer> inorderTraversal(TreeNode root) {
+
+            // Start traversal
+            inorder(root);
+
+            return result;
+        }
+
+        public void inorder(TreeNode node) {
+
+            // Base condition
+            if (node == null) {
+                return;
+            }
+
+            // Visit left subtree
+            inorder(node.left);
+
+            // Visit root
+            result.add(node.val);
+
+            // Visit right subtree
+            inorder(node.right);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // Create tree
+        TreeNode root = new TreeNode(1);
+
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        Solution sol = new Solution();
+
+        // Store answer
+        List<Integer> ans = sol.inorderTraversal(root);
+
+        // Print answer
+        System.out.println(ans);
+    }
+}
