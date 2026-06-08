@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class LongestPalendromicSubString {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the string ");
+        String str = sc.next();
+
+        int start = 0;
+        int maxLen = 1;
+
+        for (int i = 0; i < str.length(); i++) {
+            int len1 = expand(str, i, i);// odd palindrome
+            int len2 = expand(str, i, i + 1); // even palindrome
+
+            int len = Math.max(len1, len2);
+
+            if (len > maxLen) {
+                maxLen = len;
+                start = i - (len - 1) / 2;
+            }
+        }
+        sc.close();
+        System.out.println("The largest palindormic substrin is " + str.substring(start, start + maxLen));
+
+    }
+
+    public static int expand(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(right) == s.charAt(left)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
+}
