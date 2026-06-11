@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class BinaryTree {
+
+    public static Node insert(Node root, int data) {
+        if (root == null) {
+            return new Node(data);
+        }
+
+        if (data < root.data) {
+            root.left = insert(root.left, data);
+        } else {
+            root.right = insert(root.right, data);
+        }
+
+        return root;
+    }
+
+    public static void inorder(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        inorder(root.left);
+        System.out.print(root.data + " ");
+        inorder(root.right);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter root node:");
+        Node root = new Node(sc.nextInt());
+
+        while (true) {
+            System.out.println("Enter a node value (-1 to stop):");
+            int val = sc.nextInt();
+
+            if (val == -1) {
+                break;
+            }
+
+            insert(root, val);
+        }
+
+        System.out.println("Inorder Traversal:");
+        inorder(root);
+
+        sc.close();
+    }
+}
